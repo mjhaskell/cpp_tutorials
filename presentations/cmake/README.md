@@ -6,11 +6,34 @@ for most people. The gcc commands can be orgainzed into a Makefile, but these
 still are not going to be very readable. With CMake, you write a CMakeLists.txt 
 file that is more readable than the other options. CMake has a lot of 
 functionality, but for most cases it is suffiecient to be familiar with just a 
-couple of the functions. This folder contains an example 
-[CMakeLists.txt](CMakeLists.txt) that can be used as a starting place for many 
-projects. Let's walk through the file to understand what is happening.
+couple of the functions. This presentation should help you become familiar with 
+the basic CMake functions.
 
-## Configure Project
+## Using CMake
+First, navigate to the location of your `CMakeLists.txt` file. After that, 
+these are the typical steps:
+```
+mkdir build
+cd build
+cmake ..
+make
+```
+
+Typically, people will create a `build` folder to store all of the build files. 
+This location can really be anywhere, but the second argument of the `cmake` 
+command should be the location of the `CMakeLists.txt`. Wherever you choose to 
+run `cmake`, that is where all of the build files will be stored. One of those 
+files is a `Makefile`. Now, `make` will use that `Makefile` to build your code. 
+
+**NOTE:If you use git or some other version control, it is a bad practice to 
+commit the build directory.**
+
+## Understanding CMakeLists.txt
+This folder contains an example [CMakeLists.txt](CMakeLists.txt) that can be 
+used as a starting place for many projects. Let's walk through the file to 
+understand what is happening.
+
+### Configure Project
 ```
 cmake_minimum_required(VERSION 2.8.3)
 project_name(my_project)
@@ -30,7 +53,7 @@ whatever you want. I believe uppercase, lowercase, and underscores are
 available. If you ever receive a warning message saying you didn't follow 
 naming conventions, then just modify the name how it wanted.
 
-## Add Desired Libraries
+### Add Desired Libraries
 ```
 find_package(Eigen3 REQUIRED)
 #add_subdirectory(lib/<lib_dir_name>)
@@ -55,7 +78,7 @@ out. If you're interested, this command looks for a `CMakeLists.txt`
 inside the location you specify and runs that CMake configuration, adding 
 it to your project.
 
-## Include Directories
+### Include Directories
 ```
 include_directories(include ${EIGEN_INCLUDE_DIRS})
 ```
@@ -81,7 +104,7 @@ of your own project.
 **NOTE: If your build fails because it cannot find an existing header 
 file, this is the first place you should look to debug.**
 
-## Declare Executable
+### Declare Executable
 ```
 add_executable(${PROJECT_NAME} main.cpp)
 #target_link_libraries(${PROJECT_NAME} ${EIGEN3_LIBRARIES})
