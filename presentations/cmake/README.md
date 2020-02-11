@@ -1,4 +1,4 @@
-# CMAKE
+# CMake
 CMake is a tool used to organize your C++ project and link external libraries 
 that you are going to use. Your project could be built from the command line 
 using gcc with specified options; however, this is going to be less intuitive 
