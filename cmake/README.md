@@ -6,7 +6,7 @@ for most people. The gcc commands can be orgainzed into a Makefile, but these
 still are not going to be very readable. With CMake, you write a CMakeLists.txt 
 file that is more readable than the other options. CMake has a lot of 
 functionality, but for most cases it is suffiecient to be familiar with just a 
-couple of the functions. This presentation should help you become familiar with 
+couple of the functions. This document should help you become familiar with 
 the basic CMake functions.
 
 ## Using CMake
@@ -21,9 +21,11 @@ make
 
 Typically, people will create a `build` folder to store all of the build files. 
 This location can really be anywhere, but the second argument of the `cmake` 
-command should be the location of the `CMakeLists.txt`. Wherever you choose to 
+command should be the location of the `CMakeLists.txt` (in this case it was 
+outside of the build folder which is accessed with ..). Wherever you choose to 
 run `cmake`, that is where all of the build files will be stored. One of those 
-files is a `Makefile`. Now, `make` will use that `Makefile` to build your code. 
+files is a `Makefile`. Now, running `make` will use the `Makefile` generated 
+by CMake to build your code. 
 
 **NOTE:If you use git or some other version control, it is a bad practice to 
 commit the build directory.**
