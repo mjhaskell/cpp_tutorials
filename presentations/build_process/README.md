@@ -2,9 +2,9 @@
 The build process consists of 3 main steps in order to generate a working 
 executable:
 
-  1. [Pre-Processing](#pre-processing)
-  2. [Compiling](#compiling)
-  3. [Linking](#linking)
+  1. [Pre-Processing](#markdown-header-pre-processing)
+  2. [Compiling](#markdown-header-compiling)
+  3. [Linking](#markdown-header-linking)
 
 ## Pre-Processing
 The pre-processor handles all of the lines that begin with `#` in your code 
