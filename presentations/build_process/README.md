@@ -1,9 +1,10 @@
 # C++ Build Process
 The build process consists of 3 main steps in order to generate a working 
 executable:
-1. [Pre-Processing](# Pre-Processing)
-2. [Compiling](# Compiling)
-3. [Linking](# Linking)
+
+  1. [Pre-Processing](#pre-processing)
+  2. [Compiling](#compiling)
+  3. [Linking](#linking)
 
 ## Pre-Processing
 The pre-processor handles all of the lines that begin with `#` in your code 
@@ -121,6 +122,49 @@ to have a function that prints out the name of a variable, so I still use the
 `PRINT_EIGEN` macro.
 
 ## Compiling
+The second stage of the build process involves the compilor. The compilor can 
+take steps to optimize your code, which some people add as it's own step in the 
+build process, but for our purposes here, we will include it with the compiling 
+stage. 
+
+The basic idea is that the compiler will go through each `.cpp` (or `.c`) file 
+specified in your project to compile the code (remember that header files are 
+not really a thing at this point because they were copied into the source files 
+during the pre-processing stage). The compilor will check the syntax of your 
+code and will throw errors if there are any issues (e.g. you were missing a 
+semi-colon or something like that).
+
+**Remember that the compilor will mostly throw syntax errors. This can be 
+useful when trying to debug.**
+
+Really, the compilor converts your C++ code into Assembly code that the 
+computer can actually understand. The new code files are "object" files that 
+have a `.o` extension, but which won't be understandable if you try to read 
+them. At the end of this stage, there still is not an executable file you can 
+run. The object files contain the instructions for the functions you defined, 
+but your machine still does not fully know how to use those functions.
+
+A quick note on optiization, your compilor can change the way you expect your 
+code to run. For example, if you declare and initialize a variable without using
+it later, the optimizer might remove this variable completely from your 
+executable. This can be annoying if you created a temporary variable to look at 
+for debugging purposes, but the optimization will help your code run faster and 
+more efficiently when your project is done. Also, building in Debug, Standard, 
+or Release mode will play a role in how much optimization happens to your code. 
 
 ## Linking
+At this point, the computer does not know how to use all of the pieces of 
+compiled code (from your own code as well as the code from libraries you are 
+using). The compilor sees function calls and assumes that the functions are 
+defined without looking at the definitions. The linker goes through and creates 
+the final executable that is able to access of the compiled functions 
+correctly. So the linker will verify that all declared functions have a 
+defnition and that no functions or variables are defined more than once.
 
+It is also worth mentioning that the output from the linker does not have to be 
+an executable. The linker can also output static and dynamic libraries if that 
+is what your project was trying to build.
+
+**Remember that common linker errors include missing function definitions, 
+repeated definitions of functions/variables, and failure to specify external 
+libraries in the `target_link_libraries()` function in your `CMakeLists.txt`.**
