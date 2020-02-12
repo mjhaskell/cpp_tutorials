@@ -34,7 +34,6 @@ properties and capabilities of classes. Here are some things we will look at:
   4. [Encapsulation](#encapsulation)
   5. [Constructors](#constructors)
   6. [Destructors](#destructors)
-  7. [Operator Overloading](#operator-overloading)
 
 ## Defining a Class
 Just to get some syntax down, let's create our int class:
@@ -281,5 +280,3 @@ as we saw with the example above). Those types of bugs can be hard to find.
 ## Constructors
 
 ## Destructors
-
-## Operator Overloading
