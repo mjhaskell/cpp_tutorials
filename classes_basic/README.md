@@ -28,13 +28,13 @@ benefit of keep each individual files shorter and easier to parse.
 After that basic introduction, we can start to discuss in more detail 
 properties and capabilities of classes. Here are some things we will look at:
 
-  1. [Defining a Class](#markdown-header-defining-a-class)
-  2. [Member Variables](#markdown-header-member-variables)
-  3. [Member Functions](#markdown-header-member-functions)
-  4. [Encapsulation](#markdown-header-encapsulation)
-  5. [Constructors](#markdown-header-constructors)
-  6. [Destructors](#markdown-header-destructors)
-  7. [Operator Overloading](#markdown-header-operator-overloading)
+  1. [Defining a Class](#defining-a-class)
+  2. [Member Variables](#member-variables)
+  3. [Member Functions](#member-functions)
+  4. [Encapsulation](#encapsulation)
+  5. [Constructors](#constructors)
+  6. [Destructors](#destructors)
+  7. [Operator Overloading](#operator-overloading)
 
 ## Defining a Class
 Just to get some syntax down, let's create our int class:
