@@ -1,6 +1,9 @@
 # C++ Build Process
 The build process consists of 3 main steps in order to generate a working 
-executable.
+executable:
+1. [Pre-Processing](# Pre-Processing)
+2. [Compiling](# Compiling)
+3. [Linking](# Linking)
 
 ## Pre-Processing
 The pre-processor handles all of the lines that begin with `#` in your code 
@@ -94,6 +97,7 @@ int max = MAX(i,j);
 
 // the above line will be replaced with this
 int max = (i < j ? i : j);
+```
 
 One other fancy trick is seen in the `PRINT_EIGEN` macro. If # is used before a 
 variable, the preprocessor will replace it with the name the user assigned the 
@@ -115,3 +119,8 @@ replacing the `DISPLAY` variable for debugging with an actual boolean that is
 passed in as a command line argument. That said, I'm not aware of another way 
 to have a function that prints out the name of a variable, so I still use the 
 `PRINT_EIGEN` macro.
+
+## Compiling
+
+## Linking
+
