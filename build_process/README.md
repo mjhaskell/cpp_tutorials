@@ -157,7 +157,7 @@ At this point, the computer does not know how to use all of the pieces of
 compiled code (from your own code as well as the code from libraries you are 
 using). The compilor sees function calls and assumes that the functions are 
 defined without looking at the definitions. The linker goes through and creates 
-the final executable that is able to access of the compiled functions 
+the final executable that is able to access all of the compiled functions 
 correctly. So the linker will verify that all declared functions have a 
 defnition and that no functions or variables are defined more than once.
 
