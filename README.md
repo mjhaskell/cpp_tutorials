@@ -10,6 +10,5 @@ this repository more useful! :)
 ## Navigation
 See individual directories for presentations on that topic. Each directory 
 should have a README file that contains the presentation; these should display 
-automatically in your browser when accessed through bitbucket.org. Some of the 
-directories contain example code files to try and create an interactive 
-process. 
+automatically when accessed through your browser. Some of the directories 
+contain example code files to try and create an interactive process. 
