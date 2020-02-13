@@ -1,10 +1,10 @@
 # Object-Oriented Programming Intro
 Most companies who write production level code will probably want you to be 
 familiar with object-oriented programming. Classes provide a way to organize 
-your code in a way that is easy to read and organize your data so that it can 
-only be accesses by the things that need to access it. Also, understanding 
-classes will most likely make it easier to read and understand other people's 
-code. Let's look at a familiar example:
+your data so that it can only be accessed by things that need access, and in a 
+way that is easy to read. Also, understanding classes will most likely make it 
+easier for you to read and understand other people's code. Let's look at a 
+familiar example:
 ```cpp
 std::vector<double> vec{0.1, 3, 2.9};
 vec.push_back(1.5);
@@ -16,16 +16,17 @@ The object (or instance of the class) is `vec`. Initially, `vec` is constructed
 with 3 numbers. `push_back()` is a member method of the `vector` class, meaning 
 that you can call this method from an object. In this case `push_back()` 
 appends an aditional value to `vec`. `size` is another member function that 
-simply returns the value of an member variable that is private (hidden) from 
-the end user.
+simply returns the value of a member variable that is private (hidden) from 
+the end user. We will learn more about all if this throughout this document, so 
+don't worry if any of these concepts seem fuzzy right now.
 
 Classes can store variables (data) and have functions that use and/or 
 manipulate that data. So when you have several pieces of related data in your 
 project, consider using a class to organize it. Breaking your code up into 
 classes (which will typically each have their own file) can also have the 
-benefit of keep each individual files shorter and easier to parse.
+benefit of keeping individual files shorter and easier to parse.
 
-After that basic introduction, we can start to discuss in more detail 
+After that basic introduction, we can start to discuss in more detail the 
 properties and capabilities of classes. Here are some things we will look at:
 
   1. [Defining a Class](#defining-a-class)
@@ -36,7 +37,7 @@ properties and capabilities of classes. Here are some things we will look at:
   6. [Destructors](#destructors)
 
 ## Defining a Class
-Just to get some syntax down, let's create our int class:
+Just to get some syntax down, let's create our own version of `int` as a class:
 ```cpp
 class MyInt
 {
