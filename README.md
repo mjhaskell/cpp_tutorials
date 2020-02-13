@@ -5,9 +5,9 @@ as well). It is assumed that the reader is already familiar with basic data
 types, loops (do, while, if, for), and functions.
 
 Feel free to report any issues you might find or provide suggestions to make 
-this repository more useful.
+this repository more useful! :)
 
-# Navigation
+## Navigation
 See individual directories for presentations on that topic. Each directory 
 should have a README file that contains the presentation; these should display 
 automatically in your browser when accessed through bitbucket.org. Some of the 
