@@ -82,6 +82,7 @@ public:
     int getValue();
 };
 
+// above this point would go in a header file, below in a source file
 void MyInt::setValue(int new_value)
 {
     value = new_value;
@@ -278,5 +279,180 @@ with your own class (like overiding the width without updating area/perimeter
 as we saw with the example above). Those types of bugs can be hard to find.
 
 ## Constructors
+Now let's address another issue that still exists with `Rectangle`. What would 
+happen in this scenario?
+```cpp
+int main(int argc, char** argv)
+{
+    Rectangle rect;
+
+    double A = rect.getArea(); // What would A be?
+
+    return 0;
+}
+```
+
+This is somewhat of a trick question because non of the member variables were 
+initialized. Memory locations would have been allocated for the 4 member 
+variables, but their current value would be whatever existed in memory before 
+running your program...so the answer is that A would be garbage. And it would 
+most likely be a different value every time you ran the program. To fix this 
+issue, we could just set each member varialbe to 0 in the class definition. A 
+better approach is to define a constructor (i.e. a function that is called when 
+an instance of your class is created). A constructor specifies how to 
+initialize your class. In fact, without you even knowing it, a default 
+constructor was created for `Rectangle` allowing it to be used. The default 
+constructor in most cases will likely not be sufficient. So here is how to 
+define one:
+```cpp
+class Rectangle
+{
+public:
+    Rectangle() : width{0}, height{0}
+    {
+        area = 0;
+        perimeter = 0;
+    }
+    void setDimentions(double w, double h)
+    {
+        width = w;
+        height = h;
+        area = width * height;
+        perimeter = 2*width + 2*height;
+    }
+    double getArea() { return area; }
+    double getPerimeter() { return perimeter; }
+
+private:
+    double width;
+    double height;
+    double area;
+    double perimeter;
+};
+```
+
+The syntax for a constructor is a bit different than other functions. First, 
+the name of a constructor must match the name of your class. Second, there is 
+no return type (not even void). Lastly, you can use an initializer list to 
+instatiate member variables. This happens before the function definition and
+after using a colon, and each variable initialized here is separated with a 
+comma (except no comma after the last variable). In this example, half of the 
+member variables were set in the initializer list and the other half in the
+constructor's actual function. This is just to show that you can use either
+method; however, it is probably better to initialize simple variables in the 
+initializer list and then variables that are unable to do so in the function 
+portion.
+
+A constructor can also take arguments. In our example, every rectangle has a 
+width and a height, so it would make sense to construct a `Rectangle` by
+providing these values:
+
+```cpp
+class Rectangle
+{
+public:
+    Rectangle(double w, double h) : width{w}, height{h}
+    {
+        update();
+    }
+    void setDimentions(double w, double h)
+    {
+        width = w;
+        height = h;
+        update();
+    }
+    double getArea() { return area; }
+    double getPerimeter() { return perimeter; }
+
+private:
+    void update()
+    {
+        area = width * height;
+        perimeter = 2*width + 2*height;
+    }
+
+    double width;
+    double height;
+    double area;
+    double perimeter;
+};
+
+int main(int argc, char** argv)
+{
+    Rectangle rect{2.5, 2};
+
+    double A = rect.getArea(); // A is 5 like we would expect
+
+    return 0;
+}
+```
+
+Now the constructor requires the width and height to be supplied when you 
+create an object. Also, I created a new private function to update area and 
+perimeter so that I didn't have code duplication - it is always good to reduce 
+code duplication! 
+
+A few other things should be noted about constructors. You should initialize 
+all member variables to a default value that makes sense, which avoids 
+unexpected behavior. Multiple constructors can be defined as long as they take 
+different arguments, just like regular functions.
 
 ## Destructors
+Just like constructors are called when you create an object, destructors are 
+called when an object goes out of scope. The main purpose of destructors is to 
+properly de-allocate any memory that was manually allocated in the class. This 
+has to do with pointers and dynamic memory, which is a topic for a different 
+time. Just know that if the class ever calls `new` or some function with 
+`alloc()`, that there needs to be a matching call of `delete` or `dealloc()`. 
+These often go in the destructor. There are other times where you might want a 
+non-empty destructor, but that is project dependent. Here is the syntax for an 
+empty destructor:
+```cpp
+class Rectangle
+{
+public:
+    Rectangle(double w, double h) : width{w}, height{h}
+    {
+        update();
+    }
+    ~Rectangle()
+    {
+        // do nothing because we didn't allocate memory
+    }
+    void setDimentions(double w, double h)
+    {
+        width = w;
+        height = h;
+        update();
+    }
+    double getArea() { return area; }
+    double getPerimeter() { return perimeter; }
+
+private:
+    void update()
+    {
+        area = width * height;
+        perimeter = 2*width + 2*height;
+    }
+
+    double width;
+    double height;
+    double area;
+    double perimeter;
+};
+
+int main(int argc, char** argv)
+{
+    Rectangle rect{2.5, 2};
+
+    double A = rect.getArea(); // A is 5 like we would expect
+
+    return 0;
+}
+```
+
+As you can see, the destructor has the same name as the class except with a ~ 
+before the name. If you want to test when/if the destructor is called, you can 
+always put a print statement in it.
+
+That's all folks!
