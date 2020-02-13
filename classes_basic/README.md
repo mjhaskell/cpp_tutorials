@@ -67,7 +67,7 @@ function declared an instance of the `MyInt` class, returned 0 with the 1st
 `getValue()` (because we defined that behavior in the class), and then set the 
 value to 9 with `setValue()`.
 
-**NOTE: make sure to end class definitions with a semi-colon.**
+**NOTE: make sure to end class definitions with a semi-colon!**
 
 Now let's look at how to separate class definitions into different files. Just 
 like you can do forward declarations of functions before actually defining the 
@@ -455,4 +455,4 @@ As you can see, the destructor has the same name as the class except with a ~
 before the name. If you want to test when/if the destructor is called, you can 
 always put a print statement in it.
 
-That's all folks!
+That's all for now folks!
