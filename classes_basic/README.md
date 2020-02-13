@@ -8,7 +8,7 @@ familiar example:
 ```cpp
 std::vector<double> vec{0.1, 3, 2.9};
 vec.push_back(1.5);
-int vec_lenght = vec.size();
+int vec_length = vec.size();
 ```
 
 In this example the class is `vector` (which is inside of the `std` namespace). 
@@ -343,6 +343,9 @@ constructor's actual function. This is just to show that you can use either
 method; however, it is probably better to initialize simple variables in the 
 initializer list and then variables that are unable to do so in the function 
 portion.
+
+**NOTE: initializer lists need to be in the same order that variables were 
+declared.**
 
 A constructor can also take arguments. In our example, every rectangle has a 
 width and a height, so it would make sense to construct a `Rectangle` by
