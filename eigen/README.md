@@ -150,9 +150,11 @@ I.diagonal().setOnes(); // set diagonal to ones
 
 There are very similar options for dynamic sizes, except you have to specify 
 the size in the function calls. There are too many methods that can be used to 
-show here. Look at Eigen's [documentation][1] for more information.
+show here. Look at Eigen's 
+[documentation](https://eigen.tuxfamily.org/dox/group__TutorialAdvancedInitialization.html) 
+for more information.
 
-[1]: https://eigen.tuxfamily.org/dox/group__TutorialAdvancedInitialization.html
+
 
 ## Accessing Elements
 A single element can be accessed using `()` with the row and column as 
