@@ -140,4 +140,4 @@ change. This is because the variable `EIGEN3_LIBRARIES` is just
 empty, so nothing actually is linked.
 
 **NOTE: if you run into build errors that mention linking errors, 
-you might want to check your `target\_link\_libraries()` function.**
+you might want to check your `target_link_libraries()` function.**
