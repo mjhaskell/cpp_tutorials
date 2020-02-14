@@ -150,9 +150,7 @@ I.diagonal().setOnes(); // set diagonal to ones
 
 There are very similar options for dynamic sizes, except you have to specify 
 the size in the function calls. There are too many methods that can be used to 
-show here. Look at Eigen's 
-[documentation](https://eigen.tuxfamily.org/dox/group__TutorialAdvancedInitialization.html) 
-for more information.
+show here. Look at Eigen's documentation for more information.
 
 
 
