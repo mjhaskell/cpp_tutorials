@@ -12,3 +12,13 @@ See individual directories for presentations on that topic. Each directory
 should have a README file that contains the presentation; these should display 
 automatically when accessed through your browser. Some of the directories 
 contain example code files to try and create an interactive process. 
+
+## Order
+Some of the topics are useful to learn before others. I would recommend 
+following this order:
+
+  1. [Build Process](build_process)
+  2. [CMake](cmake)
+  3. [Classes (Basic)](classes_basic)
+  4. [Eigen](eigen)
+  5. [Classes (Advanced)](classes_advanced)
