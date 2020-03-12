@@ -4,7 +4,7 @@ Rectangle::Rectangle() :
     _width{0},
     _height{0}
 {
-    update();
+    updateProperties();
 }
 
 Rectangle::Rectangle(double w, double h)
@@ -12,25 +12,27 @@ Rectangle::Rectangle(double w, double h)
     setDimensions(w,h);
 }
 
-Rectangle::~Rectangle() {}
+Rectangle::~Rectangle() 
+{
+}
 
 void Rectangle::setWidth(double w)
 {
     _width = w;
-    update();
+    updateProperties();
 }
 
 void Rectangle::setHeight(double h)
 {
     _height = h;
-    update();
+    updateProperties();
 }
 
 void Rectangle::setDimensions(double w, double h)
 {
     _width = w;
     _height = h;
-    update();
+    updateProperties();
 }
 
 double Rectangle::getWidth() 
@@ -53,7 +55,7 @@ double Rectangle::getPerimeter()
     return _perimeter; 
 }
 
-void Rectangle::update()
+void Rectangle::updateProperties()
 {
     _area = _width * _height;
     _perimeter = 2*_width + 2*_height;

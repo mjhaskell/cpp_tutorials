@@ -5,19 +5,19 @@ class Rectangle
 {
 public:
     Rectangle();
-    Rectangle(double w, double h);
+    Rectangle(double width, double height);
     virtual ~Rectangle();
     
-    void setWidth(double w);
-    void setHeight(double h);
-    void setDimensions(double w, double h);
+    void setWidth(double width);
+    void setHeight(double height);
+    void setDimensions(double width, double height);
     double getWidth();
     double getHeight();
     double getArea();
     double getPerimeter();
 
 private:
-    void update();
+    void updateProperties();
 
     double _width;
     double _height;

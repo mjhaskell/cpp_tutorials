@@ -105,14 +105,14 @@ thing to note is that the cpp file would have to `#include` the header file to
 copy the forward declarations in the pre-processor build step.
 
 ## Member Variables
-We have already talked about member variable a bit, but let's make sure it is 
+We have already talked about member variables a bit, but let's make sure it is 
 clear how to create and use them. Here is a simple class to store the 
 properties of a rectangle:
 ```cpp
 struct Rectangle
 {
     double width;
-    double height
+    double height;
 };
 
 int main(int argc, char** argv)
@@ -191,11 +191,11 @@ time you updated the dimensions of the rectangle. Hopefully you can see how
 
 ## Encapsulation
 In the last section we beefed up our Rectangle class, but there are still many 
-flaws in it :(. To fix 1 of these flaws, it is finally time to address the 
+flaws in it :( To fix 1 of these flaws, it is finally time to address the 
 elephant in the code...why I have used the keyword `public`. The idea of 
 encapsulation is to be able to contain related data in an organized way, but 
 also to allow access to that data only when it is needed. Is is common practice 
-to hide all (or many) member variables of a class from the end user. This is 
+to hide all (or many) member variables of a class from the end user. This is to 
 prevent the data from being used incorrectly, and potentially to hide 
 proprietary information. Let's modify our last main script to see this:
 ```cpp
@@ -229,21 +229,21 @@ This is done with the keyword `private`. We can't just replace `public` with
 class Rectangle
 {
 private:
-    double width;
-    double height;
-    double area;
-    double perimeter;
+    double _width;
+    double _height;
+    double _area;
+    double _perimeter;
 
 public:
     void setDimentions(double w, double h)
     {
-        width = w;
-        height = h;
-        area = width * height;
-        perimeter = 2*width + 2*height;
+        _width = w;
+        _height = h;
+        _area = _width * _height;
+        _perimeter = 2*_width + 2*_height;
     }
-    double getArea() { return area; }
-    double getPerimeter() { return perimeter; }
+    double getArea() { return _area; }
+    double getPerimeter() { return _perimeter; }
 };
 
 int main(int argc, char** argv)
@@ -279,6 +279,20 @@ code at a company. Also, it can help restrict you from doing something dumb
 with your own class (like overiding the width without updating area/perimeter 
 as we saw with the example above). Those types of bugs can be hard to find.
 
+You might have noticed that I changed the name of the member variables to have 
+an underscore at the beginning. It is best practice to do something with the 
+name of member variables to distinguish them. The most common names I have seen 
+are `m_height`, `_height`, `height_`, and `mHeight`. Creating names like these 
+make the source files for classes much easier to read. This is because member 
+variables are declared in the header file, so when they are used in the source 
+file it can seem like undeclared variables are magically being used. When 
+member variables have names like above, then someone reading the source file 
+immidiately knows they are looking at a member variable and they don't loose 
+their minds trying to figure out where it came from or what type it is because 
+they can just look in the header file. This may be a little exaggerated, but I 
+have been frustated several times trying to read code that didn't do this - not 
+fun!
+
 ## Constructors
 Now let's address another issue that still exists with `Rectangle`. What would 
 happen in this scenario?
@@ -309,26 +323,26 @@ define one:
 class Rectangle
 {
 public:
-    Rectangle() : width{0}, height{0}
+    Rectangle() : _width{0}, _height{0}
     {
-        area = 0;
-        perimeter = 0;
+        _area = 0;
+        _perimeter = 0;
     }
     void setDimentions(double w, double h)
     {
-        width = w;
-        height = h;
-        area = width * height;
-        perimeter = 2*width + 2*height;
+        _width = w;
+        _height = h;
+        _area = _width * _height;
+        _perimeter = 2*_width + 2*_height;
     }
-    double getArea() { return area; }
-    double getPerimeter() { return perimeter; }
+    double getArea() { return _area; }
+    double getPerimeter() { return _perimeter; }
 
 private:
-    double width;
-    double height;
-    double area;
-    double perimeter;
+    double _width;
+    double _height;
+    double _area;
+    double _perimeter;
 };
 ```
 
@@ -355,30 +369,42 @@ providing these values:
 class Rectangle
 {
 public:
-    Rectangle(double w, double h) : width{w}, height{h}
+    // constructor with no arguments
+    Rectangle() : _width{0}, _height{0}
+    {
+        _area = 0;
+        _perimeter = 0;
+    }
+    // constructor with arguments
+    Rectangle(double w, double h) : _width{w}, _height{h}
     {
         update();
     }
     void setDimentions(double w, double h)
     {
-        width = w;
-        height = h;
+        _width = w;
+        _height = h;
         update();
     }
-    double getArea() { return area; }
-    double getPerimeter() { return perimeter; }
+    double getArea() { return _area; }
+    double getPerimeter() { return _perimeter; }
 
 private:
+    // can make default constructor private if you don't want it to be used
+    // in this case, you would just have to decide if it makes sense to allow 
+    // a Rectangle to be created that has no size
+    // Rectangle();
+
     void update()
     {
-        area = width * height;
-        perimeter = 2*width + 2*height;
+        _area = _width * _height;
+        _perimeter = 2*_width + 2*_height;
     }
 
-    double width;
-    double height;
-    double area;
-    double perimeter;
+    double _width;
+    double _height;
+    double _area;
+    double _perimeter;
 };
 
 int main(int argc, char** argv)
@@ -407,7 +433,7 @@ called when an object goes out of scope. The main purpose of destructors is to
 properly de-allocate any memory that was manually allocated in the class. This 
 has to do with pointers and dynamic memory, which is a topic for a different 
 time. Just know that if the class ever calls `new` or some function with 
-`alloc()`, that there needs to be a matching call of `delete` or `dealloc()`. 
+`alloc()`, then there needs to be a matching call of `delete` or `dealloc()`. 
 These often go in the destructor. There are other times where you might want a 
 non-empty destructor, but that is project dependent. Here is the syntax for an 
 empty destructor:
@@ -421,28 +447,30 @@ public:
     }
     ~Rectangle()
     {
-        // do nothing because we didn't allocate memory
+        // don't need to do anything because we didn't allocate memory
+        // can do other things like save data to a file or print something
+        // std::cout << "[Rectangle] called destructor.\n";
     }
     void setDimentions(double w, double h)
     {
-        width = w;
-        height = h;
+        _width = w;
+        _height = h;
         update();
     }
-    double getArea() { return area; }
-    double getPerimeter() { return perimeter; }
+    double getArea() { return _area; }
+    double getPerimeter() { return _perimeter; }
 
 private:
     void update()
     {
-        area = width * height;
-        perimeter = 2*width + 2*height;
+        _area = _width * _height;
+        _perimeter = 2*_width + 2*_height;
     }
 
-    double width;
-    double height;
-    double area;
-    double perimeter;
+    double _width;
+    double _height;
+    double _area;
+    double _perimeter;
 };
 
 int main(int argc, char** argv)
@@ -457,6 +485,12 @@ int main(int argc, char** argv)
 
 As you can see, the destructor has the same name as the class except with a ~ 
 before the name. If you want to test when/if the destructor is called, you can 
-always put a print statement in it.
+always put a print statement in it. It could also be useful to save data to a 
+file in the destructor if you want to use the data later.
+
+In this example, `rect` goes out of scope after `return 0;` because the 
+function ends. Then the destructor for `rect` will be called. Actually, when a 
+function or loop ends, all of the variables in that scope will be destructed in 
+reverse order of being constructed.
 
 That's all for now folks!
