@@ -1,7 +1,7 @@
 #include <iostream>
 #include "rectangle.hpp"
 
-#define PRINT(r) printRectangle(r, #r)
+#define PRINT_RECTANGLE(r) printRectangle(r, #r)
 
 void printRectangle(Rectangle& rectangle, std::string name)
 {
@@ -16,20 +16,20 @@ int main()
 {
     // constructor without arguments
     Rectangle rect1;
-    PRINT(rect1);
+    PRINT_RECTANGLE(rect1);
 
     rect1.setWidth(2.5);
-    PRINT(rect1);
+    PRINT_RECTANGLE(rect1);
 
     rect1.setHeight(2);
-    PRINT(rect1);
+    PRINT_RECTANGLE(rect1);
 
     // constructor with arguments
     Rectangle rect2{2,4};
-    PRINT(rect2);
+    PRINT_RECTANGLE(rect2);
 
     rect2.setDimensions(10, 10);
-    PRINT(rect2);
+    PRINT_RECTANGLE(rect2);
 
     return 0;
 }
