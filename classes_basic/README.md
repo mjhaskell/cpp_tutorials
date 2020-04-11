@@ -287,7 +287,7 @@ make the source files for classes much easier to read. This is because member
 variables are declared in the header file, so when they are used in the source 
 file it can seem like undeclared variables are magically being used. When 
 member variables have names like above, then someone reading the source file 
-immidiately knows they are looking at a member variable and they don't loose 
+immediately knows they are looking at a member variable and they don't loose 
 their minds trying to figure out where it came from or what type it is because 
 they can just look in the header file. This may be a little exaggerated, but I 
 have been frustated several times trying to read code that didn't do this - not 
@@ -307,7 +307,7 @@ int main(int argc, char** argv)
 }
 ```
 
-This is somewhat of a trick question because non of the member variables were 
+This is somewhat of a trick question because none of the member variables were 
 initialized. Memory locations would have been allocated for the 4 member 
 variables, but their current value would be whatever existed in memory before 
 running your program...so the answer is that A would be garbage. And it would 
@@ -349,17 +349,30 @@ private:
 The syntax for a constructor is a bit different than other functions. First, 
 the name of a constructor must match the name of your class. Second, there is 
 no return type (not even void). Lastly, you can use an initializer list to 
-instatiate member variables. This happens before the function definition and
+instantiate member variables. This happens before the function definition and
 after using a colon, and each variable initialized here is separated with a 
 comma (except no comma after the last variable). In this example, half of the 
 member variables were set in the initializer list and the other half in the
 constructor's actual function. This is just to show that you can use either
 method; however, it is probably better to initialize simple variables in the 
 initializer list and then variables that are unable to do so in the function 
-portion.
+portion. Actually, if you have a member variable of a class that requires 
+arguments to be passed into the contsructor, these types of variables must be 
+constructed in the initializer list. This is sort of a special case because you 
+can declare these types of variables without passing in the required arguments 
+(which you can't do normally) in the class definition, but then you must pass 
+the required arguments into the object in the initializer list. This is because 
+a class definition is like a template, so unless you instantiate an object of 
+the class, nothing happens - no memory is allocated and no code runs. It is 
+when you instantiate an object that code is executed, and the initializer list 
+is the place to construct things for a class because code is executed.
 
 **NOTE: initializer lists need to be in the same order that variables were 
-declared.**
+declared.** Well actually, member variables will be constructed in the 
+order they were declared even if you change the order in the initializer list.
+This is really only an issue if you are constructing a member variable from 
+other member variables. The order matters because the dependent member
+variables need to be set first, otherwise things won't construct as you expect. 
 
 A constructor can also take arguments. In our example, every rectangle has a 
 width and a height, so it would make sense to construct a `Rectangle` by
@@ -441,7 +454,7 @@ empty destructor:
 class Rectangle
 {
 public:
-    Rectangle(double w, double h) : width{w}, height{h}
+    Rectangle(double w, double h) : _width{w}, _height{h}
     {
         update();
     }
