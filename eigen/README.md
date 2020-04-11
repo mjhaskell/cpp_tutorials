@@ -123,7 +123,7 @@ Eigen::Vector3d x;
 x << 1,2,3;
 
 Eigen::VectorXd z(12);
-z << x,x,x,x;
+z << x, 2*x, x+x, x/4.0;
 ```
 
 The `<<` operator can be used for any size `Matrix` where you just give it a 
@@ -146,16 +146,14 @@ Eigen::Matrix3d c = Eigen::Matrix3d::Identity();
 Eigen::Matrix<int,10,10> I;
 I.setZero(); // set everything to zero
 I.diagonal().setOnes(); // set diagonal to ones
-``
+```
 
 There are very similar options for dynamic sizes, except you have to specify 
 the size in the function calls. There are too many methods that can be used to 
 show here. Look at Eigen's documentation for more information.
 
-
-
 ## Accessing Elements
-A single element can be accessed using `()` with the row and column as 
+A single element can be accessed using `(r,c)` with the row and column as 
 arguments. You can read the value or assign the value:
 ```cpp
 Eigen::Matrix3d I = Eigen::Matrix3d::Identity();
@@ -175,7 +173,7 @@ I.bottomRightCorner<2,3>() << 1,2,3, 4,5,6; // takes 2x3 block at bottom right
 ```
 
 These are a few operations to give you an idea. Others exist like `topRows()`, 
-`bottomRows()`, `leftCols()`, `topRightCorner()`, etc. The syntax is a slightly 
+`bottomRows()`, `leftCols()`, `topRightCorner()`, etc. The syntax is slightly 
 different for dynamic matrices, so be sure to look it up. Also, vectors have a 
 few of their own special methods like `head()`, `tail()`, and `segment()` which 
 are used to access segments of the vector at the beginning, end, or anywhere in 
@@ -183,7 +181,7 @@ between. If you ever ask yourself "I wonder if Eigen can do this...", just
 search online and they probably already have a function for it!
 
 ## Matrix Operations
-Eigen will be bit different than Numpy here. Eigen uses regular operators 
+Eigen will be a bit different than Numpy here. Eigen uses regular operators 
 (+,-,\*,/) to do arithmetic, so you don't have to think about using np.dot() or 
 anything like that. The dimensions do have to line up or else errors will be 
 thrown. An IDE might catch some of these before you actually try to run the 
@@ -207,12 +205,12 @@ products of vectors. Coefficient-wise operations do not happen by default with
 Eigen either (again they don't really make sense in linear algebra), but Eigen 
 does have methods that allow for it with things like `A.cwiseProduct(B)`. The 
 shapes of the matrices/vectors will have to be the same for these types of 
-operations, as expected.
+operations, which is to be expected.
 
 That's probably all I will introduce in this document. I have found it fairly 
 easy to find answers to questions I had about Eigen as I was learning (and even 
 now) by searching online. It might come from Eigen's documentation or places 
-like Stack Overflow. Either way, answers to your questions most likely are out 
+like Stack Overflow. Either way, answers to your questions are most likely out 
 there!
 
 ## Warnings
@@ -222,9 +220,10 @@ hand side of the `=` is being manipulated directly. So when saying `A = B+C`,
 there is no temporary object stored that equals B+C to then be copied into A 
 (which is what happens normally). This is an issue if you tried to do 
 `A = A.transpose()`, because A is being changed while doing the operation. This 
-can cause very unexpected behavior. Eigen was designed really well still. For 
-matrix multiplication operations, temporary values are stored. So `A = A*x` or 
-even `A *= x` do not have any problems. The main functions to pay attention to 
-are `transpose()` and block operations that overlap on the same matrix. See 
+can cause very unexpected behavior. Eigen was designed really well, so there is 
+a solution to avoid the issue! For matrix multiplication operations, temporary 
+values are stored. So `A = A*x` or even `A *= x` do not have any problems. The 
+main functions to pay attention to are `transpose()` and block operations that 
+overlap on the same matrix. See 
 [here](https://eigen.tuxfamily.org/dox/group__TopicAliasing.html) for more 
 information.
