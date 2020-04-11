@@ -191,7 +191,7 @@ Eigen::Matrix3d A = Eigen::Matrix3d::Identity();
 Eigen::Matrix<double,3,2> B = Eigen::Matrix<double,3,2>::Random();
 Eigen::Vector3d x{1,2,3};
 
-Eigen::Matrix<double,3,2> C = 2*A.conjugate()*B + A.transpose()*A/3.0;
+Eigen::Matrix<double,3,2> C = 2*A.conjugate()*B + A.transpose()*B/3.0;
 Eigen::Vector3d y = A.adjoint()*x + x;
 ```
 
@@ -221,9 +221,20 @@ there is no temporary object stored that equals B+C to then be copied into A
 (which is what happens normally). This is an issue if you tried to do 
 `A = A.transpose()`, because A is being changed while doing the operation. This 
 can cause very unexpected behavior. Eigen was designed really well, so there is 
-a solution to avoid the issue! For matrix multiplication operations, temporary 
-values are stored. So `A = A*x` or even `A *= x` do not have any problems. The 
-main functions to pay attention to are `transpose()` and block operations that 
-overlap on the same matrix. See 
+a solution to avoid the issue! 
+
+```cpp
+A = A.transpose().eval(); // .eval() explicitly creates a temporary variable
+// Eigen also provides a special function for the transpose case
+A.transposeInPlace(); // this does the equivalent of A = A.transpose();
+
+// this is how you can explicitly not create a temporary variable
+// NOTE: this assumes the user knows there will not be any aliasing issues
+B.noalias() = A*A; // 
+```
+
+For matrix multiplication operations, temporary values are stored. So `A = A*x` 
+or even `A *= x` do not have any problems. The main functions to pay attention 
+to are `transpose()` and block operations that overlap on the same matrix. See 
 [here](https://eigen.tuxfamily.org/dox/group__TopicAliasing.html) for more 
 information.
