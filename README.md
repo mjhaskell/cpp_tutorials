@@ -1,24 +1,41 @@
 # C++ Tutorials
-This repository was created to help BYU students that are beggining to dive 
-into programming deeper than is taught in the ME curriculum (maybe others 
-as well). It is assumed that the reader is already familiar with basic data 
-types, loops (do, while, if, for), and functions.
+This repository was created to help BYU students that are beggining to dive into C++ programming
+deeper than is taught in the ME curriculum (maybe others as well). It is assumed that the reader is
+already familiar with basic data types, loops (do, while, if, for), and functions.
 
-Feel free to report any issues you might find or provide suggestions to make 
-this repository more useful! :)
+## How to Use
+All presentations are contained in the [wiki]. This repository contatins the accompanying code that
+you can build and run with a debugger to help solidify concepts from the presentations. The file
+structure here should be the same as what you will see on the [wiki]. To build code in *debug* mode,
+navigate to the desired directory containing a `CMakeLists.txt` file and follow these steps:
+```shell
+mkdir build
+cd build
+cmake -DCMAKE_BUILD_TYPE=Debug ..
+make
+```
+**Please report issues!** That could be code that doesn't build, typos, unclear explanations, etc.
+Also, feel free to provide suggestions or ask for additional topics to be covered. I might not be
+able to get to them immediately, but I really want to make this repository as useful as possible!
 
-## Navigation
-See individual directories for presentations on that topic. Each directory 
-should have a README file that contains the presentation; these should display 
-automatically when accessed through your browser. Some of the directories 
-contain example code files to try and create an interactive process. 
+## IDE
+Use whichever IDE with a debugger that you prefer. If you don't have one you currently use, then I
+would recommend [Qt Creator] or [VS Code]. I really like both of these, and they are free!
 
-## Order
-Some of the topics are useful to learn before others. I would recommend 
-following this order:
+As far as I know, [Qt Creator] really only supports C/C++. It is really useful for designing Qt GUI
+applications, but I also like to use it just for debugging C++ code. [Qt Creator] can be installed
+with `apt`, but that isn't the most recent version (which is likely just fine). If you want the
+newest version, you can download the open source version for free but you now have to make an
+account with them to do so.
 
-  1. [Build Process](build_process)
-  2. [CMake](cmake)
-  3. [Classes (Basic)](classes_basic)
-  4. [Eigen](eigen)
-  5. [Classes (Advanced)](classes_advanced)
+[VS Code] is a little more involved to setup debugging properly, but it is not soley focused on
+C/C++. You can also debug Python, have syntax highlighting and auto-complete for various languages,
+locally view markdown files, view latex files, etc. Many capabilities come by default when you
+download and install the deb, but there are also several free extensions available to get a lot
+of extra functionality. One really nice feature is the Live Share extension, which is basically the
+equivalent of Overleaf for collaborative programming.
+
+<!-- Link Definitions -->
+[wiki]: https://github.com/mjhaskell/cpp_tutorials/wiki
+[Qt Creator]: https://www.qt.io/download
+[VS Code]: https://code.visualstudio.com/download
