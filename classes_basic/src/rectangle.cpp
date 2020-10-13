@@ -39,24 +39,24 @@ void Rectangle::setDimensions(double w, double h)
     updateProperties();
 }
 
-double Rectangle::getWidth() 
-{ 
-    return _width; 
+double Rectangle::getWidth()
+{
+    return _width;
 }
 
-double Rectangle::getHeight() 
-{ 
-    return _height; 
+double Rectangle::getHeight()
+{
+    return _height;
 }
 
-double Rectangle::getArea() 
-{ 
-    return _area; 
+double Rectangle::getArea()
+{
+    return _area;
 }
 
-double Rectangle::getPerimeter() 
-{ 
-    return _perimeter; 
+double Rectangle::getPerimeter()
+{
+    return _perimeter;
 }
 
 void Rectangle::updateProperties()
