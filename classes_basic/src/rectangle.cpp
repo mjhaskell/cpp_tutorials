@@ -1,19 +1,23 @@
+#include <iostream>
 #include "rectangle.hpp"
 
-Rectangle::Rectangle() : 
+Rectangle::Rectangle() :
     _width{0},
     _height{0}
 {
+    std::cout << "[Rectangle] default constructor" << std::endl;
     updateProperties();
 }
 
 Rectangle::Rectangle(double w, double h)
 {
+    std::cout << "[Rectangle] constructor with args" << std::endl;
     setDimensions(w,h);
 }
 
 Rectangle::~Rectangle() 
 {
+    std::cout << "[Rectangle] destructor" << std::endl;
 }
 
 void Rectangle::setWidth(double w)
