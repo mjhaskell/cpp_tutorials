@@ -6,6 +6,7 @@ class Rectangle
 public:
     Rectangle();
     Rectangle(double width, double height);
+    Rectangle(const Rectangle& other);
     virtual ~Rectangle();
     
     void setWidth(double width);

@@ -15,7 +15,13 @@ Rectangle::Rectangle(double w, double h)
     setDimensions(w,h);
 }
 
-Rectangle::~Rectangle() 
+Rectangle::Rectangle(const Rectangle &other)
+{
+    std::cout << "[Rectangle] copy constructor" << std::endl;
+    setDimensions(other._width, other._height);
+}
+
+Rectangle::~Rectangle()
 {
     std::cout << "[Rectangle] destructor" << std::endl;
 }
