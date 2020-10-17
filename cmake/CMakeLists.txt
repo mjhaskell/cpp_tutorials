@@ -1,17 +1,4 @@
-cmake_minimum_required(VERSION 2.8.3)
-project(learn_cpp)
+cmake_minimum_required(VERSION 3.0.2)
+project(cmake)
 
-find_package(Eigen3 REQUIRED)
-#add_subdirectory(lib/<lib_dir_name>)
-
-include_directories(
-    include
-    ${EIGEN3_INCLUDE_DIRS}
-    )
-
-add_executable(${PROJECT_NAME}
-    main.cpp
-    )
-#target_link_libraries(${PROJECT_NAME}
-#    ${EIGEN3_LIBRARIES}
-#    )
+add_subdirectory(minimum_cmake)
