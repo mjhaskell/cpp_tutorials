@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<launch>
+
+  <!-- Load Params -->
+  <rosparam command="load" file="$(find ros_example)/params/example.yaml"/>
+
+  <!-- Talker -->
+  <node name="talker" pkg="ros_example" type="talker">
+  </node>
+
+  <!-- Listener -->
+  <node name="listener" pkg="ros_example" type="listener" output="screen">
+  </node>
+
+</launch>
