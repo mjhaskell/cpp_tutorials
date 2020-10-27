@@ -15,7 +15,6 @@ catkin_package(
 add_executable(talker
   src/talker_node.cpp
   src/talker.cpp
-  include/ros_example/talker.hpp
   )
 target_include_directories(talker PRIVATE
   include
@@ -26,7 +25,6 @@ target_link_libraries(talker ${catkin_LIBRARIES})
 add_executable(listener
   src/listener_node.cpp
   src/listener.cpp
-  include/ros_example/listener.hpp
   )
 target_include_directories(listener PRIVATE
   include
