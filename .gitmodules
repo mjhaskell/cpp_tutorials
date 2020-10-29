@@ -1,0 +1,4 @@
+[submodule "cmake/dependencies/submodule/lib/eigen"]
+	path = cmake/dependencies/submodule/lib/eigen
+	url = https://gitlab.com/libeigen/eigen.git
+    branch = 3.3.7
